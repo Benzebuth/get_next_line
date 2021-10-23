@@ -11,17 +11,18 @@ int	main(void)
 		printf("error fd loading\n");
 		return (1);
 	}
+	/*
 	recu = get_next_line(fd);
 	printf("%s", recu);
+*/
 
-	/*
 	while (1)
 	{
 		recu = get_next_line(fd);
-		printf("%s", recu);
+		printf("out:%s", recu);
 		if (recu == NULL)
 			break ;
 	}
-	*/
+
 	return (0);
 }
