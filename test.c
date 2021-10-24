@@ -21,6 +21,24 @@ int	main(void)
 	recu = get_next_line(fd);
 	printf("%s", recu);
 	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
+	recu = get_next_line(fd);
+	printf("%s", recu);
+	free(recu);
 //	*/
 
 	/*
@@ -30,8 +48,8 @@ int	main(void)
 		printf("out:%s", recu);
 		if (recu == NULL)
 			break ;
-//		else
-//			free(recu);
+		else
+			free(recu);
 	}
 	*/
 	return (0);

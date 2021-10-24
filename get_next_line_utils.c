@@ -71,7 +71,7 @@ char	*ft_cut_nl(char *str)
 	dest_size = ft_strlen(str) - i;
 	if (i == ft_strlen(str))
 		return (str);
-//	printf("ici%d\n",(ft_strlen(str) - i));
+//	printf("dest_size:%d\n", dest_size);
 	dest = (char *)malloc(sizeof(char) * dest_size + 1);
 	if (!dest)
 		return (NULL);
