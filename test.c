@@ -11,13 +11,15 @@ int	main(void)
 		printf("error fd loading\n");
 		return (1);
 	}
-//	/*
+	/*
 	recu = get_next_line(fd);
 	printf("%s", recu);
 	free(recu);
+
 	recu = get_next_line(fd);
 	printf("%s", recu);
 	free(recu);
+
 	recu = get_next_line(fd);
 	printf("%s", recu);
 	free(recu);
@@ -41,7 +43,7 @@ int	main(void)
 	free(recu);
 //	*/
 
-	/*
+//	/*
 	while (1)
 	{
 		recu = get_next_line(fd);
@@ -51,6 +53,6 @@ int	main(void)
 		else
 			free(recu);
 	}
-	*/
+//	*/
 	return (0);
 }
