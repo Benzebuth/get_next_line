@@ -55,7 +55,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		dest[i + j] = s2[j];
 	dest[i + j] = '\0';
-	free(s2);
+
 	return (dest);
 }
 
@@ -81,6 +81,6 @@ char	*ft_cut_nl(char *str)
 	while (str[++i])
 		dest[j++] = str[i];
 	dest[j] = '\0';
-	free(str);
+
 	return (dest);
 }

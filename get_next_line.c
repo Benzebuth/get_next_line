@@ -17,8 +17,7 @@ static char	*ft_substr_nl(char *str, int i_start)
 		i++;
 	}
 	new_str[i] = '\0';
-	if (str)
-		free(str);
+
 	return (new_str);
 }
 
