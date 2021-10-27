@@ -41,10 +41,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	if (s1[0] == '\0')
+	if (s1 == NULL)
 		return (NULL);
 	if (!s2)
 		return (s1);
+	if (ft_strlen(s1) + ft_strlen(s2) == 0)
+		return (NULL);
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
 		return (NULL);
@@ -72,6 +74,11 @@ char	*ft_cut_nl(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	dest_size = (ft_strlen(str)) - i; // promblem ici avec \n\n\0
+	if (dest_size == 1)
+	{
+		free(str);
+		return (NULL);
+	}
 	if (i == ft_strlen(str))
 		return (str);
 	dest = (char *)malloc(sizeof(char) * dest_size + 1);
@@ -81,6 +88,7 @@ char	*ft_cut_nl(char *str)
 	while (str[++i])
 		dest[j++] = str[i];
 	dest[j] = '\0';
-	free(str);
+	if (str)
+		free(str);
 	return (dest);
 }
