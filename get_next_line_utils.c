@@ -6,7 +6,7 @@
 /*   By: bcolin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:57:48 by bcolin            #+#    #+#             */
-/*   Updated: 2021/10/27 19:24:12 by bcolin           ###   ########.fr       */
+/*   Updated: 2021/10/28 19:55:11 by bcolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		dest[i + j] = s2[j];
 	dest[i + j] = '\0';
-	free(s2);
+	ft_clean(s2);
+	ft_clean(s1);
 	return (dest);
 }
 
@@ -93,20 +94,26 @@ char	*ft_cut_nl(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	dest_size = (ft_strlen(str) - i) - 1;
-	//if (dest_size == 0)
-	//{
-	//	free(str);
-	//	return (NULL);
-	//}
 	if (i == ft_strlen(str))
 		return (str);
 	dest = (char *)malloc(sizeof(char) * dest_size + 1);
 	if (!dest)
 		return (NULL);
 	j = 0;
-	while (str[++i])
-		dest[j++] = str[i];
+	if (str[i] == '\n')
+		i++;
+	while (str[i])
+		dest[j++] = str[i++];
 	dest[j] = '\0';
-	free(str);
+	ft_clean(str);
 	return (dest);
+}
+
+void	ft_clean(char *str)
+{
+	if (*str)
+	{
+		free(str);
+		str = NULL;
+	}
 }

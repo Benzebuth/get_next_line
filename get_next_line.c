@@ -6,7 +6,7 @@
 /*   By: bcolin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:56:32 by bcolin            #+#    #+#             */
-/*   Updated: 2021/10/27 19:16:29 by bcolin           ###   ########.fr       */
+/*   Updated: 2021/10/28 20:00:59 by bcolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,19 @@ static char	*ft_nl_test(char *str, int *detected)
 		}
 		i++;
 	}
-	return (str);
+	return (ft_substr_nl(str, ft_strlen(str)));
+}
+
+static int	ft_check_empty(char *str)
+{
+	if (!str)
+		return (1);
+	if (ft_strlen(str) == 0)
+	{
+		ft_clean(str);
+		return (1);
+	}
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -71,9 +83,12 @@ char	*get_next_line(int fd)
 		str_mem_next[fd] = ft_read_fd(fd, &eof);
 		if (str_mem_next[fd] == NULL)
 			str_ready = 0;
+//		ft_clean(str_final_cut);
 		str_final_cut =	ft_nl_test(str_mem[fd], &str_ready);
 		str_mem[fd] = ft_cut_nl(str_mem[fd]);
 		str_mem[fd] = ft_strjoin(str_mem[fd], str_mem_next[fd]);
 	}
+	if (ft_check_empty(str_final_cut))
+		return (NULL);
 	return (str_final_cut);
 }
