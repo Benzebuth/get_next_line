@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcolin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -91,7 +91,7 @@ static char	*gen_line(char **memory, int read_count)
 
 char	*get_next_line(int fd)
 {
-	static char	*memory = NULL;
+	static char	*memory[4096];
 	char		buffer[BUFFER_SIZE + 1];
 	int			index_nl;
 	int			read_count;
@@ -101,18 +101,18 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (1)
 	{
-		index_nl = ft_check_for_nl(memory);
+		index_nl = ft_check_for_nl(memory[fd]);
 		if (index_nl > -1)
 			break ;
 		read_count = read(fd, buffer, BUFFER_SIZE);
 		if (read_count == 0)
 			break ;
-		if (!memory)
-			memory = ft_substr_nl(buffer, 0, read_count);
+		if (!memory[fd])
+			memory[fd] = ft_substr_nl(buffer, 0, read_count);
 		else
-			append(&memory, buffer, read_count);
+			append(&memory[fd], buffer, read_count);
 	}
-	if (!memory)
+	if (!memory[fd])
 		return (NULL);
-	return (gen_line(&memory, read_count));
+	return (gen_line(&memory[fd], read_count));
 }
